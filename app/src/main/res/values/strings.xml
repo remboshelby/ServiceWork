@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ServiceWork</string>
+    <string name="battery_discharging">Battery is discharging</string>
+    <string name="battery_level">Battery Level %1$o</string>
+    <string name="battery">battery</string>
+    <string name="gps">gps</string>
+    <string name="permission_not_granted">разрешение не получено</string>
+    <string name="gps_is_off">GPS is OFF</string>
+    <string name="gps_info">longitude: %1$s latitude: %2$s</string>
+</resources>
