@@ -23,7 +23,6 @@
 
         <service android:name=".services.BatteryService" />
         <service android:name=".services.GpsService" />
-        <service android:name=".services.GpsService2" />
     </application>
 
 </manifest>

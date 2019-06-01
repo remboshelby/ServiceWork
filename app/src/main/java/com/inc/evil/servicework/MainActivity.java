@@ -10,13 +10,12 @@ import android.widget.Toast;
 
 import com.inc.evil.servicework.services.BatteryService;
 import com.inc.evil.servicework.services.GpsService;
-import com.inc.evil.servicework.services.GpsService2;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_bat_ser)
-    public void btn_bat_ser() {
+    public void btnBatterStart() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(this, BatteryService.class));
+            startService(new Intent(this, BatteryService.class));
+//            startForegroundService(new Intent(this, BatteryService.class));
         } else {
             startService(new Intent(this, BatteryService.class));
         }
@@ -92,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
     private void startGpsService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startService(new Intent(this, GpsService.class));
-        } else {
-            startService(new Intent(this, GpsService2.class));
         }
     }
 

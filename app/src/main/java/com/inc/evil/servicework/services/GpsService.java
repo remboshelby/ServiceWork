@@ -92,6 +92,7 @@ public class GpsService extends Service implements LocationListener {
     private void startTracking() {
         Intent intent = new Intent();
         intent.setAction(ACTION_STOP_GPS_TRACKING);
+        setGpsTrackingON(true);
         AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(ALARM_SERVICE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 1000, 6000, pendingIntent);
@@ -143,15 +144,16 @@ public class GpsService extends Service implements LocationListener {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            unregisterReceiver(receiverGspTurnOff);
-            setGpsTrackingON(false);
-            Log.d(TAG, "unregisterReceiver");
+            if (isGpsTrackingON()){
+                unregisterReceiver(receiverGspTurnOff);
+                setGpsTrackingON(false);
+                Log.d(TAG, "unregisterReceiver");
+            }
         }
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        String t = "dsdfsdf";
     }
 
     @Override
@@ -205,5 +207,9 @@ public class GpsService extends Service implements LocationListener {
 
     public void setGpsTrackingON(boolean gpsTrackingON) {
         isGpsTrackingON = gpsTrackingON;
+    }
+
+    public boolean isGpsTrackingON() {
+        return isGpsTrackingON;
     }
 }
